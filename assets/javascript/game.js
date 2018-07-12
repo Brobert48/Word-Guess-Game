@@ -100,6 +100,8 @@ document.onkeyup= function(event){
     if (game.matchedLetters.toString() == game.letterToguess.toString()){
         document.getElementById("win").innerHTML="You guessed "+game.hotSeatWord+" correctly!";
         wins++;
+        var audio = new Audio("assets/audio/Win-dings.wav");
+        audio.play(); 
         game.reset();
         game.selectWord();
         game.anonimize();
@@ -109,6 +111,8 @@ document.onkeyup= function(event){
     if (lives==0){
         // document.getElementById("win").innerHTML= "You Lost";
         loses++;
+        var audio = new Audio("assets/audio/Lose-Horn.mp3");
+        audio.play();       
         // commented these out so that I can show my awesome hangman animation to finish.
         // game.reset();
         // game.selectWord();
@@ -122,6 +126,11 @@ document.onkeyup= function(event){
     document.getElementById("hangman").src = "assets/images/Hangman_"+lives+".jpg";
 }
 }
-
+document.getElementById('reset-button').addEventListener('click', function(){
+    game.reset();
+    game.selectWord();
+    game.anonimize();
+    game.characterize()
+   });
    
 
