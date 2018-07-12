@@ -137,61 +137,61 @@ document.getElementById('reset-button').addEventListener('click', function(){
    });
    
 
-//mobile text field
+// //mobile text field
 
-    document.getElementById("mobile-field").addEventListener("keyup", readMobile);
-    function myFunction() {
-    var x = document.getElementById("mobile-field");
-    // x.value = x.value.toUpperCase();
-    if(lives>0){
+//     document.getElementById("mobile-field").addEventListener("keyup", readMobile);
+//     function myFunction() {
+//     var x = document.getElementById("mobile-field");
+//     // x.value = x.value.toUpperCase();
+//     if(lives>0){
     
-        var str = game.hotSeatWord;
-        var n = str.includes(x);
-        var arr = game.usedLetters;
-        var m = arr.includes(x);
-        var arr2= game.wrongLetters;
-        var o = arr2.includes(x);
-        var str2 = game.alphabet;
-        var p = str2.includes(x);
-        if(p){
-        for (var i = 0; i < game.letterToguess.length; i++) {
-            //if not in hotseatword or wrong letters add user guess to wrong letters
-            if (!n&&!o) {
-                game.wrongLetters.push(x);
-                lives--;
-                break;
-            }
-            //if user input matches letters in hotseatword
-            else if (game.letterToguess[i] === x && !m && !o) {
-            //    inputs character into gamespace
-                $("#"+i).text(x);
-                // if character already in matchedLetters, stop
-                if(game.matchedLetters[i] === x){
-                    break;
-                }
-                //else add character into matched letters at appropriate index location
-                else {game.matchedLetters.splice(i, 1, x);}
+//         var str = game.hotSeatWord;
+//         var n = str.includes(x);
+//         var arr = game.usedLetters;
+//         var m = arr.includes(x);
+//         var arr2= game.wrongLetters;
+//         var o = arr2.includes(x);
+//         var str2 = game.alphabet;
+//         var p = str2.includes(x);
+//         if(p){
+//         for (var i = 0; i < game.letterToguess.length; i++) {
+//             //if not in hotseatword or wrong letters add user guess to wrong letters
+//             if (!n&&!o) {
+//                 game.wrongLetters.push(x);
+//                 lives--;
+//                 break;
+//             }
+//             //if user input matches letters in hotseatword
+//             else if (game.letterToguess[i] === x && !m && !o) {
+//             //    inputs character into gamespace
+//                 $("#"+i).text(x);
+//                 // if character already in matchedLetters, stop
+//                 if(game.matchedLetters[i] === x){
+//                     break;
+//                 }
+//                 //else add character into matched letters at appropriate index location
+//                 else {game.matchedLetters.splice(i, 1, x);}
                   
                 
-            }
+//             }
            
-        }
-        //adds character to usedLetters as long as it has not already been used
-        if(!m){
-            game.usedLetters.push(x);}
-        // displays usedLetters to UI
-        var str = game.usedLetters;
-        document.getElementById("guessed"). innerHTML = str;
-        }
-        //win condition
-        if (game.matchedLetters.toString() == game.letterToguess.toString()){
-            document.getElementById("win").innerHTML="You guessed "+game.hotSeatWord.toLocaleUpperCase()+" correctly!";
-            wins++;
-            var audio = new Audio("assets/audio/Win-dings.wav");
-            audio.play(); 
-            game.reset();
-            game.selectWord();
-            game.anonimize();
-            game.characterize();
-        }
-    }}
+//         }
+//         //adds character to usedLetters as long as it has not already been used
+//         if(!m){
+//             game.usedLetters.push(x);}
+//         // displays usedLetters to UI
+//         var str = game.usedLetters;
+//         document.getElementById("guessed"). innerHTML = str;
+//         }
+//         //win condition
+//         if (game.matchedLetters.toString() == game.letterToguess.toString()){
+//             document.getElementById("win").innerHTML="You guessed "+game.hotSeatWord.toLocaleUpperCase()+" correctly!";
+//             wins++;
+//             var audio = new Audio("assets/audio/Win-dings.wav");
+//             audio.play(); 
+//             game.reset();
+//             game.selectWord();
+//             game.anonimize();
+//             game.characterize();
+//         }
+//     }}
