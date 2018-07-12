@@ -4,9 +4,10 @@ var lives=10;
 var wins=0;
 var loses=0;
 var game ={
-    wordOptions:["blake","robert","is","the","best"],
+    wordOptions:["ahoy","landlubber","booty","buccaneer","cutlass","doubloons","grog","plunder","rum",],
     usedLetters:[],
     hotSeatWord:"",
+    alphabet:"abcdefghijklmnopqrstuvwxyz",
     letterToguess:[],
     matchedLetters:[],
     gameSpace:[],
@@ -37,7 +38,7 @@ var game ={
     },
     //resets game after a win or loss
     reset:function(){
-        this.wordOptions=["blake","robert","is","the","best"];
+        this.wordOptions=["ahoy","landlubber","booty","buccaneer","cutlass","doubloons","grog","plunder","rum",];
         this.usedLetters=[];
         this.letterToguess=[];
         this.matchedLetters=[];
@@ -66,7 +67,9 @@ document.onkeyup= function(event){
     var m = arr.includes(event.key);
     var arr2= game.wrongLetters;
     var o = arr2.includes(event.key);
-    
+    var str2 = game.alphabet;
+    var p = str2.includes(event.key);
+    if(p){
     for (var i = 0; i < game.letterToguess.length; i++) {
         //if not in hotseatword or wrong letters add user guess to wrong letters
         if (!n&&!o) {
@@ -87,7 +90,7 @@ document.onkeyup= function(event){
               
             
         }
-         
+       
     }
     //adds character to usedLetters as long as it has not already been used
     if(!m){
@@ -95,10 +98,10 @@ document.onkeyup= function(event){
     // displays usedLetters to UI
     var str = game.usedLetters;
     document.getElementById("guessed"). innerHTML = str;
-    
+    }
     //win condition
     if (game.matchedLetters.toString() == game.letterToguess.toString()){
-        document.getElementById("win").innerHTML="You guessed "+game.hotSeatWord+" correctly!";
+        document.getElementById("win").innerHTML="You guessed "+game.hotSeatWord.toLocaleUpperCase()+" correctly!";
         wins++;
         var audio = new Audio("assets/audio/Win-dings.wav");
         audio.play(); 
@@ -109,7 +112,7 @@ document.onkeyup= function(event){
     }
     // loss condition
     if (lives==0){
-        // document.getElementById("win").innerHTML= "You Lost";
+        document.getElementById("win").innerHTML= "One more pirate for the gallows";
         loses++;
         var audio = new Audio("assets/audio/Lose-Horn.mp3");
         audio.play();       
@@ -134,3 +137,61 @@ document.getElementById('reset-button').addEventListener('click', function(){
    });
    
 
+//mobile text field
+
+    document.getElementById("mobile-field").addEventListener("keyup", readMobile);
+    function myFunction() {
+    var x = document.getElementById("mobile-field");
+    // x.value = x.value.toUpperCase();
+    if(lives>0){
+    
+        var str = game.hotSeatWord;
+        var n = str.includes(x);
+        var arr = game.usedLetters;
+        var m = arr.includes(x);
+        var arr2= game.wrongLetters;
+        var o = arr2.includes(x);
+        var str2 = game.alphabet;
+        var p = str2.includes(x);
+        if(p){
+        for (var i = 0; i < game.letterToguess.length; i++) {
+            //if not in hotseatword or wrong letters add user guess to wrong letters
+            if (!n&&!o) {
+                game.wrongLetters.push(x);
+                lives--;
+                break;
+            }
+            //if user input matches letters in hotseatword
+            else if (game.letterToguess[i] === x && !m && !o) {
+            //    inputs character into gamespace
+                $("#"+i).text(x);
+                // if character already in matchedLetters, stop
+                if(game.matchedLetters[i] === x){
+                    break;
+                }
+                //else add character into matched letters at appropriate index location
+                else {game.matchedLetters.splice(i, 1, x);}
+                  
+                
+            }
+           
+        }
+        //adds character to usedLetters as long as it has not already been used
+        if(!m){
+            game.usedLetters.push(x);}
+        // displays usedLetters to UI
+        var str = game.usedLetters;
+        document.getElementById("guessed"). innerHTML = str;
+        }
+        //win condition
+        if (game.matchedLetters.toString() == game.letterToguess.toString()){
+            document.getElementById("win").innerHTML="You guessed "+game.hotSeatWord.toLocaleUpperCase()+" correctly!";
+            wins++;
+            var audio = new Audio("assets/audio/Win-dings.wav");
+            audio.play(); 
+            game.reset();
+            game.selectWord();
+            game.anonimize();
+            game.characterize();
+        }
+    }}

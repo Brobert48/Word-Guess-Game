@@ -5,28 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Word Guess Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Ewert" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <style rel="stylesheet" type="text/css" href="assets/css/style.css"></style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-
+        <h1>Pirates of the Hangman!</h1>
     </header>
-    <!-- <audio controls="hide" autoplay="autoplay">
-        <source src="assets/audio/8845_friendly_pirates_98_bpm_proudmusiclibrary.com_vo_preview.mp3" type="audio/mp3">
-    </audio> -->
-    <embed name="BackgroundMusic" src="assets/audio/8845_friendly_pirates_98_bpm_proudmusiclibrary.com_vo_preview.mp3" loop="true" hidden="true" autostart="true">
-    <div class="rules" style="margin: 10%; padding: 5%; border: black solid 5px;">
-        Logic dev area.
-        <!-- <p>Mystery word: </p> <p id="hotSeatWord"></p> -->
-        <p>lives: </p> <p class="" id="lives">10</p>
-        <p>Game space:</p> <p class="" id="game-space"></p><br>
-        <p>letters guessed:</p> <p class="" id="guessed"></p>
-        <p>result:</p><p class="" id="win"></p>
-        <p>wins:</p><p class="" id="wins"></p>
-        <p>loses:</p><p class="" id="loses"></p>
-        <img id="hangman" src="assets/images/Hangman_10.jpg">
-        <button type="button" id="reset-button" onclick="game.reset()">Play Again</button>
+    <!-- <embed name="BackgroundMusic" src="assets/audio/8845_friendly_pirates_98_bpm_proudmusiclibrary.com_vo_preview.mp3" loop="true" hidden="true" autostart="true"> -->
+    
+        <div class="instructions">
+                <p>Welcome to Pirates of the Hangman</p>
+                <p>Your goal is to prevent as many of your hearties from the hanman's gallow, by guessing the words I'm thinking of.</p>
+                <p>Press any key to begin!</p>
+                <p>Don't try and fool me by not guessing a letter or using CAPS Lock. It won't work on me.</p>
+                <p>You can press the "Play Again" button if you lose or give up on a word.</p>
+            </div>
+
+        <div class="board">
+               <div class="clearfix"> 
+                <img id="hangman" src="assets/images/Hangman_10.jpg"><br>
+                
+                <p class="gameSpace" id="game-space"></p>
+            </div>
+            <br>
+            <button type="button" id="reset-button" onclick="game.reset()">Play Again</button>
+            <br>
+            <p id="win"></p>
+            <!-- <input type="text" id="mobile-field"> -->
+
+                
+
+
+     
+            
+            <div class="clearfix">
+            <p style="float: left; margin: 5px">Letters Guessed:</p> <p style="float: left; margin: 5px" id="guessed"></p></div>
+        <div class="clearfix" id="scoreboard">
+        
+        <p style="float: left; margin: 5px">Guesses Left: </p> <p style="float: left; margin: 5px"  id="lives">10</p>
+        <p style="float: left; margin: 5px">Wins:</p> <p style="float: left;  margin: 5px"  id="wins">0</p>
+        <p style="float: left; margin: 5px">Loses:</p><p  style="float: left; margin: 5px"  id="loses">0</p></div>
+        
+        
     </div>
     <!-- Game space -->
     <div></div>
