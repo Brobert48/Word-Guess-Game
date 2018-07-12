@@ -12,16 +12,21 @@
     <header>
 
     </header>
-    
+    <!-- <audio controls="hide" autoplay="autoplay">
+        <source src="assets/audio/8845_friendly_pirates_98_bpm_proudmusiclibrary.com_vo_preview.mp3" type="audio/mp3">
+    </audio> -->
+    <embed name="BackgroundMusic" src="assets/audio/8845_friendly_pirates_98_bpm_proudmusiclibrary.com_vo_preview.mp3" loop="true" hidden="true" autostart="true">
     <div class="rules" style="margin: 10%; padding: 5%; border: black solid 5px;">
         Logic dev area.
         <!-- <p>Mystery word: </p> <p id="hotSeatWord"></p> -->
-        <p>lives: </p> <p id="lives">..</p>
-        <p>Game space:</p> <p id="game-space"></p><br>
-        <p>letters guessed:</p> <p id="guessed">..</p>
-        <p>result:</p><p id="win"></p>
-        <p>wins:</p><p id="wins"></p>
-        <p>loses:</p><p id="loses"></p>
+        <p>lives: </p> <p class="" id="lives">10</p>
+        <p>Game space:</p> <p class="" id="game-space"></p><br>
+        <p>letters guessed:</p> <p class="" id="guessed">..</p>
+        <p>result:</p><p class="" id="win"></p>
+        <p>wins:</p><p class="" id="wins"></p>
+        <p>loses:</p><p class="" id="loses"></p>
+        <img id="hangman" src="assets/images/Hangman_10.jpg">
+        <button type="button" id="reset-button" onclick="game.reset()">Play Again</button>
     </div>
     <!-- Game space -->
     <div></div>

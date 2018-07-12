@@ -45,18 +45,20 @@ var game ={
         this.wrongLetters=[];
         document.getElementById("game-space").innerHTML = "";
         document.getElementById("guessed").innerHTML = "";
+        document.getElementById("hangman").src = "assets/images/Hangman_10.jpg";
         lives=10;
     
     },
     
 };
 //calling functions
+
 game.selectWord();
 game.anonimize();
 game.characterize();
 //heres where the user input is entered and processed
 document.onkeyup= function(event){
-    
+    if(lives>0){
     
     var str = game.hotSeatWord;
     var n = str.includes(event.key);
@@ -105,18 +107,21 @@ document.onkeyup= function(event){
     }
     // loss condition
     if (lives==0){
-        document.getElementById("win").innerHTML= "You Lost";
+        // document.getElementById("win").innerHTML= "You Lost";
         loses++;
-        game.reset();
-        game.selectWord();
-        game.anonimize();
-        game.characterize();
+        // commented these out so that I can show my awesome hangman animation to finish.
+        // game.reset();
+        // game.selectWord();
+        // game.anonimize();
+        // game.characterize();
     }
     // writes Stats to UI
     document.getElementById("lives").innerHTML = lives;   
     document.getElementById("wins").innerHTML = wins;
     document.getElementById("loses").innerHTML = loses;
+    document.getElementById("hangman").src = "assets/images/Hangman_"+lives+".jpg";
 }
-         
+}
+
    
 
