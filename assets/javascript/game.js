@@ -1,5 +1,5 @@
 
-// Var RNG = function(){Math.floor((Math.random() * this.wordOptions.length))};
+
 var lives=10;
 var wins=0;
 var loses=0;
@@ -15,9 +15,6 @@ var game ={
     selectWord: function(){
        var num = Math.floor((Math.random()*this.wordOptions.length));
         this.hotSeatWord = this.wordOptions[num];
-        
-        // var newText = document.getElementById("hotSeatWord");
-        // newText.append(this.hotSeatWord);
         
     },
     // creates _ for each letter of hotSeatword
@@ -38,6 +35,7 @@ var game ={
            this.letterToguess = this.hotSeatWord.split("");
         }
     },
+    //resets game after a win or loss
     reset:function(){
         this.wordOptions=["blake","robert","is","the","best"];
         this.usedLetters=[];
@@ -45,7 +43,6 @@ var game ={
         this.matchedLetters=[];
         this.gameSpace=[];
         this.wrongLetters=[];
-        // document.getElementById("hotSeatWord").innerHTML = "";
         document.getElementById("game-space").innerHTML = "";
         document.getElementById("guessed").innerHTML = "";
         lives=10;
@@ -53,10 +50,11 @@ var game ={
     },
     
 };
-
+//calling functions
 game.selectWord();
 game.anonimize();
 game.characterize();
+//heres where the user input is entered and processed
 document.onkeyup= function(event){
     
     
@@ -68,26 +66,35 @@ document.onkeyup= function(event){
     var o = arr2.includes(event.key);
     
     for (var i = 0; i < game.letterToguess.length; i++) {
+        //if not in hotseatword or wrong letters add user guess to wrong letters
         if (!n&&!o) {
             game.wrongLetters.push(event.key);
             lives--;
             break;
         }
+        //if user input matches letters in hotseatword
         else if (game.letterToguess[i] === event.key && !m && !o) {
+        //    inputs character into gamespace
             $("#"+i).text(event.key);
+            // if character already in matchedLetters, stop
             if(game.matchedLetters[i] === event.key){
                 break;
             }
+            //else add character into matched letters at appropriate index location
             else {game.matchedLetters.splice(i, 1, event.key);}
               
             
         }
          
     }
-    game.usedLetters.push(event.key);
+    //adds character to usedLetters as long as it has not already been used
+    if(!m){
+        game.usedLetters.push(event.key);}
+    // displays usedLetters to UI
     var str = game.usedLetters;
-    document.getElementById("guessed"). innerHTML =str;
+    document.getElementById("guessed"). innerHTML = str;
     
+    //win condition
     if (game.matchedLetters.toString() == game.letterToguess.toString()){
         document.getElementById("win").innerHTML="You guessed "+game.hotSeatWord+" correctly!";
         wins++;
@@ -96,15 +103,16 @@ document.onkeyup= function(event){
         game.anonimize();
         game.characterize();
     }
-    if (lives===0){
-        document.getElementById("win").innerHTML= "You Lose";
+    // loss condition
+    if (lives==0){
+        document.getElementById("win").innerHTML= "You Lost";
         loses++;
         game.reset();
         game.selectWord();
         game.anonimize();
         game.characterize();
     }
-    
+    // writes Stats to UI
     document.getElementById("lives").innerHTML = lives;   
     document.getElementById("wins").innerHTML = wins;
     document.getElementById("loses").innerHTML = loses;
