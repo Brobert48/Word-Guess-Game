@@ -112,7 +112,7 @@ document.onkeyup= function(event){
     }
     // loss condition
     if (lives==0){
-        document.getElementById("win").innerHTML= "One more pirate for the gallows";
+        document.getElementById("win").innerHTML= "One more pirate for the gallows. The correct answer was: "+game.hotSeatWord.toLocaleUpperCase();
         loses++;
         var audio = new Audio("assets/audio/Lose-Horn.mp3");
         audio.play();       
