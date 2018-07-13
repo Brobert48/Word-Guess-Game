@@ -10,10 +10,17 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
+    <header class="clearfix">
+        <img src="assets/images/Pirate 1.gif" style="height: 100px; float: left; margin:2% 5px 5% 5%;">
         <h1>Pirates of the Hangman!</h1>
+        <img src="assets/images/jolly-roger.jpg" style="height: 100px; float: left; margin:2% 5% 5% 5px;">
     </header>
-    <!-- <embed name="BackgroundMusic" src="assets/audio/8845_friendly_pirates_98_bpm_proudmusiclibrary.com_vo_preview.mp3" loop="true" hidden="true" autostart="true"> -->
+    <audio  id="BackgroundMusic" controls autoplay preload="auto" style="display: none">
+            <source src="assets/audio/Pirate Music.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+          </audio>
+    <!-- <embed name="BackgroundMusic" src="assets/audio/Pirate Music.mp3" loop="true" hidden="true" autostart="true"> -->
+        <!-- <audio  id="BackgroundMusic" autoplay style="display: none"><source src="assets/audio/Pirate Music.mp3" type="audio/mp3"></audio> -->
     
         <div class="instructions">
                 <p>Welcome to Pirates of the Hangman</p>
@@ -30,7 +37,31 @@
                 <p class="gameSpace" id="game-space"></p>
             </div>
             <br>
+            
             <button type="button" id="reset-button" onclick="game.reset()">Play Again</button>
+            
+                                 
+                  <button id="audioControl" type="button">Play Music</button>
+                  
+                  <script>
+                  var yourAudio = document.getElementById('BackgroundMusic'),
+                    ctrl = document.getElementById('audioControl');
+                    
+                    ctrl.onclick = function () {
+                    
+                        // Update the Button
+                        var pause = ctrl.innerHTML === 'Pause Music';
+                        ctrl.innerHTML = pause ? 'Play Music' : 'Pause Music';
+                    
+                        // Update the Audio
+                        var method = pause ? 'pause' : 'play';
+                        yourAudio[method]();
+                    
+                        // Prevent Default Action
+                        return false;
+                    }; 
+                  </script>
+            <!-- <button type="button" id="Mute" onclick="muteBGM()">Mute Background Music</button> -->
             <br>
             <p id="win"></p>
             <!-- <input type="text" id="mobile-field"> -->

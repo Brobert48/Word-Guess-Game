@@ -134,6 +134,7 @@ document.getElementById('reset-button').addEventListener('click', function(){
     game.selectWord();
     game.anonimize();
     game.characterize()
+    
    });
    
 

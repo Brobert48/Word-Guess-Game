@@ -3,9 +3,10 @@ body{
 }
 h1{
     font-family: 'Ewert', cursive;
+    float: left;
     font-size: 50px;
     color: white;
-    margin:2% 25% 5% 25%;
+    margin:2% auto 5% auto;
     text-align: center;
     
 }
