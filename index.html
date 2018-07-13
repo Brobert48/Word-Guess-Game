@@ -41,7 +41,7 @@
                   <button id="audioControl" type="button">Play Music</button>
                   
                   <script>
-                  var Audio = document.getElementById('BackgroundMusic'),
+                  var bgAudio = document.getElementById('BackgroundMusic'),
                     ctrl = document.getElementById('audioControl');
                     
                     ctrl.onclick = function () {
@@ -52,7 +52,7 @@
                     
                         // Audio command
                         var method = pause ? 'pause' : 'play';
-                        Audio[method]();
+                        bgAudio[method]();
                     }; 
                   </script>
             <br>
