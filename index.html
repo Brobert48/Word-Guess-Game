@@ -17,10 +17,7 @@
     </header>
     <audio  id="BackgroundMusic" controls autoplay preload="auto" style="display: none">
             <source src="assets/audio/Pirate Music.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
           </audio>
-    <!-- <embed name="BackgroundMusic" src="assets/audio/Pirate Music.mp3" loop="true" hidden="true" autostart="true"> -->
-        <!-- <audio  id="BackgroundMusic" autoplay style="display: none"><source src="assets/audio/Pirate Music.mp3" type="audio/mp3"></audio> -->
     
         <div class="instructions">
                 <p>Welcome to Pirates of the Hangman</p>
@@ -44,24 +41,21 @@
                   <button id="audioControl" type="button">Play Music</button>
                   
                   <script>
-                  var yourAudio = document.getElementById('BackgroundMusic'),
+                  var Audio = document.getElementById('BackgroundMusic'),
                     ctrl = document.getElementById('audioControl');
                     
                     ctrl.onclick = function () {
                     
-                        // Update the Button
+                        // button text
                         var pause = ctrl.innerHTML === 'Pause Music';
                         ctrl.innerHTML = pause ? 'Play Music' : 'Pause Music';
                     
-                        // Update the Audio
+                        // Audio command
                         var method = pause ? 'pause' : 'play';
-                        yourAudio[method]();
-                    
-                        // Prevent Default Action
-                        return false;
+                        Audio[method]();
                     }; 
                   </script>
-            <!-- <button type="button" id="Mute" onclick="muteBGM()">Mute Background Music</button> -->
+            <
             <br>
             <p id="win"></p>
             <!-- <input type="text" id="mobile-field"> -->
