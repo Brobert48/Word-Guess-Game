@@ -18,17 +18,21 @@ var game ={
         this.hotSeatWord = this.wordOptions[num];
         
     },
-    // creates _ for each letter of hotSeatword
+    // creates - for each letter of hotSeatword
     anonimize:function(){
         for (var i = 0; i < this.hotSeatWord.length; i++) {
                     this.gameSpace.push(' - '); 
                     this.matchedLetters.push("-");
                     
-        var newText = $("<div style='float:left;'' id='"+i+"'>"+ this.gameSpace[i] +"</div>")
-        $("#game-space").append(newText);
-        // newText.setAttribute("ID", "gamespace[i]");
-        }
 
+        var targetDiv = document.getElementById("game-space");      
+        var newText = document.createElement("div");
+        newText.innerHTML = "-";
+        targetDiv.appendChild(newText);
+        newText.setAttribute("style", "float:left");
+        newText.setAttribute("id", i);
+        }
+        
 },
     // breaks hotseatword into an array of characters
     characterize:function(){
@@ -80,7 +84,8 @@ document.onkeyup= function(event){
         //if user input matches letters in hotseatword
         else if (game.letterToguess[i] === event.key && !m && !o) {
         //    inputs character into gamespace
-            $("#"+i).text(event.key);
+        var getId = document.getElementById(i);
+        getId.innerHTML= event.key;
             // if character already in matchedLetters, stop
             if(game.matchedLetters[i] === event.key){
                 break;
